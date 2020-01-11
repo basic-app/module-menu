@@ -15,16 +15,16 @@ abstract class BaseMenuModel extends \BasicApp\Core\Model
 
     protected $returnType = Menu::class;
 
-	protected $fieldLabels = [
-		'menu_name' => 'Name',
-		'menu_uid' => 'UID',
-		'menu_id' => 'ID',
-		'menu_created_at' => 'Created At',
-		'menu_updated_at' => 'Updated At',
+    protected $fieldLabels = [
+        'menu_name' => 'Name',
+        'menu_uid' => 'UID',
+        'menu_id' => 'ID',
+        'menu_created_at' => 'Created At',
+        'menu_updated_at' => 'Updated At',
         'menu_item_icon' => 'Default Item Icon',
         'menu_item_class' => 'Default Item Container Class',
         'menu_item_link_class' => 'Default Item Link Class'
-	];
+    ];
 
     protected $langCategory = 'menu';
 
