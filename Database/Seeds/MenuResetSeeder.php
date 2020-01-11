@@ -4,7 +4,7 @@
  * @license MIT
  * @link http://basic-app.com
  */
-namespace BasicApp\Block\Database\Seeds;
+namespace BasicApp\Menu\Database\Seeds;
 
 class MenuResetSeeder extends \BasicApp\Core\Seeder
 {

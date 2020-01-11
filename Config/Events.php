@@ -6,6 +6,7 @@ use BasicApp\Admin\AdminEvents;
 use BasicApp\Menu\Controllers\Admin\Menu as MenuController;
 use BasicApp\System\Events\SystemResetEvent;
 use BasicApp\Menu\Database\Seeds\MenuResetSeeder;
+use Config\Database;
 
 SystemEvents::onPreSystem(function()
 {
