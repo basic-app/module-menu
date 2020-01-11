@@ -12,9 +12,9 @@ if (!$parent)
     throw new Exception('Menu not found.');
 }
 
-$this->data['mainMenu']['menu']['active'] = true;
+$this->data['mainMenu']['site']['items']['menu']['active'] = true;
 
-$this->data['breadcrumbs'][] = ['label' => $this->data['title'], 'url' => Url::createUrl('/admin/menu')];
+$this->data['breadcrumbs'][] = ['label' => $this->data['title'], 'url' => Url::createUrl('admin/menu')];
 
 $this->data['breadcrumbs'][] = [
     'label' => $parent->menu_name, 
