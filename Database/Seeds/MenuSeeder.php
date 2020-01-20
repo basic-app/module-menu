@@ -6,8 +6,8 @@
  */
 namespace BasicApp\Menu\Database\Seeds;
 
-use BasicApp\Site\Models\MenuModel;
-use BasicApp\Site\Models\MenuItemModel;
+use BasicApp\Menu\Models\MenuModel;
+use BasicApp\Menu\Models\MenuItemModel;
 
 class MenuSeeder extends \BasicApp\Core\Seeder
 {
