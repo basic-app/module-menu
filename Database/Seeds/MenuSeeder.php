@@ -19,12 +19,20 @@ class MenuSeeder extends \BasicApp\Core\Seeder
             return;
         }
 
-        $mainMenu = MenuModel::getMenu('main', true, [
-            'menu_name' => 'Index'
-        ]);
+        $mainMenu = MenuModel::getMenu('main', true, ['menu_name' => 'Index']);
 
         if ($mainMenu)
         {
+            MenuItemModel::getEntity(
+                ['item_menu_id' => $mainMenu->menu_id, 'item_url' => '/'], 
+                true, 
+                [
+                    'item_name' => 'Index',
+                    'item_enabled' => 1,
+                    'item_sort' => 1
+                ]
+            );
+
             MenuItemModel::getEntity(
                 ['item_menu_id' => $mainMenu->menu_id, 'item_url' => '/page/about'], 
                 true, 
