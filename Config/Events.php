@@ -17,7 +17,7 @@ SystemEvents::onPreSystem(function()
 
 AdminEvents::onMainMenu(function($event)
 {
-    if (MenuController::checkAccess())
+    if (service('admin')->can(MenuController::class))
     {
         $event->items['site']['items']['menu'] = [
             'url' => Url::createUrl('admin/menu'),
