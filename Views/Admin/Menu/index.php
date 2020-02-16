@@ -20,30 +20,46 @@ $this->data['actionMenu'][] = [
 
 $adminTheme = service('adminTheme');
 
-echo $adminTheme->table([
-    'labels' => [
-        $model->getFieldLabel('menu_id'),
+echo $adminTheme->grid([
+    'headers' => [
+        [
+            'class' => $adminTheme::GRID_HEADER_PRIMARY_KEY,
+            'content' => $model->getFieldLabel('menu_id'),
+        ],
         $model->getFieldLabel('menu_created_at'),
-        $model->getFieldLabel('menu_uid'),
+        [
+            'class' => $adminTheme::GRID_HEADER_LABEL,
+            'content' => $model->getFieldLabel('menu_uid')
+        ],
         $model->getFieldLabel('menu_name'),
-        '',
-        '',
-        ''
+        ['class' => $adminTheme::GRID_HEADER_LINK],
+        ['class' => $adminTheme::GRID_HEADER_BUTTON],
+        ['class' => $adminTheme::GRID_HEADER_BUTTON]
     ],
-    'elements' => $elements,
-    'columns' => function($model) {
-        return [
-            $this->createColumn(['field' => 'menu_id'])->number()->displaySmall(),
-            $this->createColumn(['field' => 'menu_created_at'])->displayMedium(),
-            $this->createColumn(['field' => 'menu_uid'])->success(),
-            $this->createColumn(['field' => 'menu_name'])->displaySmall(),
-            $this->createLinkColumn([
-                'label' => t('admin.menu', 'Items'), 
-                'url' => Url::createUrl('admin/menu-item', ['item_menu_id' => $model->getPrimaryKey()])
-            ]),
-            $this->createUpdateLinkColumn(['action' => 'admin/menu/update']),
-            $this->createDeleteLinkColumn(['action' => 'admin/menu/delete'])
-        ];
+    'items' => function() use ($elements, $adminTheme) {
+
+        foreach($elements as $data)
+        {
+            yield [
+                $data->menu_id,
+                $data->menu_created_at,
+                $data->menu_uid,
+                $data->menu_name,
+                [
+                    'class' => $adminTheme::GRID_CELL_LINK,
+                    'label' => t('admin.menu', 'Items'),
+                    'url' => Url::createUrl('admin/menu-item', ['item_menu_id' => $data->getPrimaryKey()])
+                ],
+                [
+                    'class' => $adminTheme::GRID_CELL_BUTTON_UPDATE,
+                    'url' => Url::returnUrl('admin/menu/update', ['id' => $data->menu_id])
+                ],
+                [
+                    'class' => $adminTheme::GRID_CELL_BUTTON_DELETE,
+                    'url' => Url::returnUrl('admin/menu/delete', ['id' => $data->menu_id])
+                ]
+            ];
+        }
     }
 ]);
 

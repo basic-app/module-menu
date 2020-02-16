@@ -20,29 +20,50 @@ $this->data['actionMenu'][] = [
 
 $adminTheme = service('adminTheme');
 
-echo $adminTheme->table([
-    'labels' => [
-        $model->getFieldLabel('item_id'),
+echo $adminTheme->grid([
+    'headers' => [
+        [
+            'class' => $adminTheme::GRID_HEADER_PRIMARY_KEY,
+            'content' => $model->getFieldLabel('item_id')
+        ],
         $model->getFieldLabel('item_created_at'),
         $model->getFieldLabel('item_url'),
-        $model->getFieldLabel('item_name'),
-        $model->getFieldLabel('item_sort'),
-        $model->getFieldLabel('item_enabled'),
-        '',
-        ''
+        [
+            'class' => $adminTheme::GRID_HEADER_LABEL,
+            'content' => $model->getFieldLabel('item_name')
+        ],
+        [
+            'class' => $adminTheme::GRID_HEADER_LARGE,
+            'content' => $model->getFieldLabel('item_sort')
+        ],
+        ['class' => $adminTheme::GRID_HEADER_BOOLEAN, 'content' => $model->getFieldLabel('item_enabled')],
+        ['class' => $adminTheme::GRID_HEADER_BUTTON],
+        ['class' => $adminTheme::GRID_HEADER_BUTTON]
     ],
-    'elements' => $elements,
-    'columns' => function($model) {
-        return [
-            $this->createColumn(['field' => 'item_id'])->number()->displaySmall(),
-            $this->createColumn(['field' => 'item_created_at'])->displayMedium(),
-            $this->createColumn(['field' => 'item_url'])->success()->displaySmall(),
-            $this->createColumn(['field' => 'item_name']),
-            $this->createColumn(['field' => 'item_sort'])->number(),
-            $this->createBooleanColumn(['field' => 'item_enabled']),
-            $this->createUpdateLinkColumn(['action' => 'admin/menu-item/update']),
-            $this->createDeleteLinkColumn(['action' => 'admin/menu-item/delete'])
-        ];
+    'items' => function() use ($elements, $adminTheme) {
+        
+        foreach($elements as $data)
+        {
+            yield [
+                $data->item_id,
+                $data->item_created_at,
+                $data->item_url,
+                $data->item_name,
+                $data->item_sort,
+                [
+                    'class' => $adminTheme::GRID_CELL_BOOLEAN,
+                    'content' => $data->item_enabled
+                ],
+                [
+                    'class' => $adminTheme::GRID_CELL_BUTTON_UPDATE,
+                    'url' => Url::returnUrl('admin/menu-item/update', ['id' => $data->item_id])
+                ],            
+                [
+                    'class' => $adminTheme::GRID_CELL_BUTTON_DELETE,
+                    'url' => Url::returnUrl('admin/menu-item/delete', ['id' => $data->item_id])
+                ]
+            ];
+        }
     }
 ]);
 
