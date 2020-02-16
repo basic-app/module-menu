@@ -37,8 +37,8 @@ echo $adminTheme->grid([
             'content' => $model->getFieldLabel('item_sort')
         ],
         ['class' => $adminTheme::GRID_HEADER_BOOLEAN, 'content' => $model->getFieldLabel('item_enabled')],
-        ['class' => $adminTheme::GRID_HEADER_BUTTON],
-        ['class' => $adminTheme::GRID_HEADER_BUTTON]
+        ['class' => $adminTheme::GRID_HEADER_BUTTON_UPDATE],
+        ['class' => $adminTheme::GRID_HEADER_BUTTON_DELETE]
     ],
     'items' => function() use ($elements, $adminTheme) {
         
@@ -50,18 +50,9 @@ echo $adminTheme->grid([
                 $data->item_url,
                 $data->item_name,
                 $data->item_sort,
-                [
-                    'class' => $adminTheme::GRID_CELL_BOOLEAN,
-                    'content' => $data->item_enabled
-                ],
-                [
-                    'class' => $adminTheme::GRID_CELL_BUTTON_UPDATE,
-                    'url' => Url::returnUrl('admin/menu-item/update', ['id' => $data->item_id])
-                ],            
-                [
-                    'class' => $adminTheme::GRID_CELL_BUTTON_DELETE,
-                    'url' => Url::returnUrl('admin/menu-item/delete', ['id' => $data->item_id])
-                ]
+                $data->item_enabled,
+                ['url' => Url::returnUrl('admin/menu-item/update', ['id' => $data->item_id])],            
+                ['url' => Url::returnUrl('admin/menu-item/delete', ['id' => $data->item_id])]
             ];
         }
     }

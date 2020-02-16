@@ -33,8 +33,8 @@ echo $adminTheme->grid([
         ],
         $model->getFieldLabel('menu_name'),
         ['class' => $adminTheme::GRID_HEADER_LINK],
-        ['class' => $adminTheme::GRID_HEADER_BUTTON],
-        ['class' => $adminTheme::GRID_HEADER_BUTTON]
+        ['class' => $adminTheme::GRID_HEADER_BUTTON_UPDATE],
+        ['class' => $adminTheme::GRID_HEADER_BUTTON_DELETE]
     ],
     'items' => function() use ($elements, $adminTheme) {
 
@@ -46,18 +46,11 @@ echo $adminTheme->grid([
                 $data->menu_uid,
                 $data->menu_name,
                 [
-                    'class' => $adminTheme::GRID_CELL_LINK,
                     'label' => t('admin.menu', 'Items'),
                     'url' => Url::createUrl('admin/menu-item', ['item_menu_id' => $data->getPrimaryKey()])
                 ],
-                [
-                    'class' => $adminTheme::GRID_CELL_BUTTON_UPDATE,
-                    'url' => Url::returnUrl('admin/menu/update', ['id' => $data->menu_id])
-                ],
-                [
-                    'class' => $adminTheme::GRID_CELL_BUTTON_DELETE,
-                    'url' => Url::returnUrl('admin/menu/delete', ['id' => $data->menu_id])
-                ]
+                ['url' => Url::returnUrl('admin/menu/update', ['id' => $data->menu_id])],
+                ['url' => Url::returnUrl('admin/menu/delete', ['id' => $data->menu_id])]
             ];
         }
     }
