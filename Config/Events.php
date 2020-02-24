@@ -1,5 +1,6 @@
 <?php
 
+use BasicApp\Site\SiteEvents;
 use BasicApp\Helpers\Url;
 use BasicApp\System\SystemEvents;
 use BasicApp\Admin\AdminEvents;
@@ -10,32 +11,52 @@ use BasicApp\Menu\Database\Seeds\MenuResetSeeder;
 use BasicApp\Menu\Database\Seeds\MenuSeeder;
 use Config\Database;
 
-SystemEvents::onPreSystem(function()
+if (class_exists(SystemEvents::class))
 {
-    helper(['menu']);
-});
-
-AdminEvents::onMainMenu(function($event)
-{
-    if (service('admin')->can(MenuController::class))
+    SystemEvents::onPreSystem(function()
     {
-        $event->items['site']['items']['menu'] = [
-            'url' => Url::createUrl('admin/menu'),
-            'label' => t('admin.menu', 'Menu')
-        ];
-    }
-});
+        helper(['menu']);
+    });
+}
 
-SystemEvents::onReset(function(SystemResetEvent $event)
+if (class_exists(AdminEvents::class))
 {
-    $seeder = Database::seeder();
+    AdminEvents::onMainMenu(function($event)
+    {
+        if (service('admin')->can(MenuController::class))
+        {
+            $event->items['site']['items']['menu'] = [
+                'url' => Url::createUrl('admin/menu'),
+                'label' => t('admin.menu', 'Menu')
+            ];
+        }
+    });
+}
 
-    $seeder->call(MenuResetSeeder::class);
-});
-
-SystemEvents::onSeed(function(SystemSeedEvent $event)
+if (class_exists(SystemEvents::class))
 {
-    $seeder = Database::seeder();
+    SystemEvents::onReset(function(SystemResetEvent $event)
+    {
+        $seeder = Database::seeder();
 
-    $seeder->call(MenuSeeder::class);
-});
+        $seeder->call(MenuResetSeeder::class);
+    });
+}
+
+if (class_exists(SystemEvents::class))
+{
+    SystemEvents::onSeed(function(SystemSeedEvent $event)
+    {
+        $seeder = Database::seeder();
+
+        $seeder->call(MenuSeeder::class);
+    });
+}
+
+if (class_exists(SiteEvents::class))
+{
+    SiteEvents::onMainLayout(function($event) 
+    {
+        $event->params['mainMenu'] = menu_items('main', true, ['menu_name' => 'Main Menu']);
+    });
+}
