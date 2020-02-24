@@ -30,6 +30,26 @@ abstract class BaseMenuModel extends \BasicApp\Core\Model
         return static::getEntity(['menu_uid' => $uid], $create, $params);
     }
 
+    public function beforeDelete(array $params)
+    {
+        foreach($params['id'] as $id)
+        {
+            $items = MenuItemModel::factory()
+                ->select('item_id')
+                ->where('item_menu_id', $id)
+                ->asArray()
+                ->findAll();
+
+            foreach($items as $item)
+            {
+                if (!MenuItemModel::factory()->delete($item['item_id']))
+                {
+                    throw new Exception('Delete error.');
+                }
+            }
+        }
+    }
+
     public static function getMenuItems(string $uid, bool $create = false, array $params = [])
     {
         $menu = static::getMenu($uid, $create, $params);
@@ -51,26 +71,6 @@ abstract class BaseMenuModel extends \BasicApp\Core\Model
             ->findAll();
 
         return $items;
-    }
-
-    public function beforeDelete(array $params)
-    {
-        foreach($params['id'] as $id)
-        {
-            $items = MenuItemModel::factory()
-                ->select('item_id')
-                ->where('item_menu_id', $id)
-                ->asArray()
-                ->findAll();
-
-            foreach($items as $item)
-            {
-                if (!MenuItemModel::factory()->delete($item['item_id']))
-                {
-                    throw new Exception('Delete error.');
-                }
-            }
-        }
     }
 
 }

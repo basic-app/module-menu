@@ -4,8 +4,8 @@
  * @license MIT
  * @link http://basic-app.com
  */
+use BasicApp\Menu\MenuEvents;
 use BasicApp\Menu\Models\MenuModel;
-use BasicApp\Menu\Models\MenuItemModel;
 
 if (!function_exists('menu_items'))
 {
@@ -13,33 +13,16 @@ if (!function_exists('menu_items'))
     {
         $return = [];
 
-        $items = MenuModel::getMenuItems($menu, $create, $params);
-
-        foreach($items as $item)
+        foreach(MenuModel::getMenuItems($menu, $create, $params) as $menuItem)
         {
-            $row = [
-                'label' => $item->item_name,
-                'url' => $item->item_url
-            ];
-
-            $current_uri = uri_string();
-
-            if ($current_uri == '/')
+            if ($menuItem->item_uid)
             {
-                if ($item->item_url == '/')
-                {
-                    $row['active'] = true;
-                }
+                $return[$menuItem->item_uid] = MenuEvents::menuItem($menuItem);
             }
             else
             {
-                if (trim($item->item_url, '/') == $current_uri)
-                {
-                    $row['active'] = true;
-                }
+                $return[] = MenuEvents::menuItem($menuItem);
             }
-
-            $return[] = $row;
         }
 
         return $return;
