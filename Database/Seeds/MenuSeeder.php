@@ -55,7 +55,7 @@ class MenuSeeder extends \BasicApp\Core\Seeder
                     'item_name' => 'GitHub',
                     'item_enabled' => 1,
                     'item_sort' => 10,
-                    'item_icon' => 'fab fa-github'
+                    'item_uid' => 'fa-github'
                 ]
             );
         }

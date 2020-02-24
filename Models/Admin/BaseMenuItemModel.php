@@ -14,9 +14,6 @@ abstract class BaseMenuItemModel extends \BasicApp\Menu\Models\MenuItemModel
     protected $allowedFields = [
         'item_name', 
         'item_url', 
-        'item_link_class',
-        'item_class', 
-        'item_icon',
         'item_menu_id', 
         'item_sort',
         'item_uid',
@@ -26,9 +23,6 @@ abstract class BaseMenuItemModel extends \BasicApp\Menu\Models\MenuItemModel
     protected $validationRules = [
         'item_name' => 'not_special_chars|max_length[255]|required',
         'item_url' => 'not_special_chars|max_length[255]|required',
-        'item_link_class' => 'not_special_chars|max_length[255]',
-        'item_icon' => 'not_special_chars|max_length[255]',
-        'item_class' => 'not_special_chars|max_length[255]',
         'item_sort' => 'is_natural|permit_empty',
         'item_enabled' => 'is_natural|required',
         'item_uid' => 'not_special_chars|max_length[255]'

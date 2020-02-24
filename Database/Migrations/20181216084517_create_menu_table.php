@@ -18,10 +18,7 @@ class Migration_create_menu_table extends \BasicApp\Core\Migration
             'menu_created_at' => $this->created()->toArray(),
             'menu_updated_at' => $this->updated()->toArray(),
             'menu_uid' => $this->string()->unique()->toArray(),
-            'menu_name' => $this->string()->toArray(),
-            'menu_item_icon' => $this->string()->toArray(),
-            'menu_item_class' => $this->string()->toArray(),
-            'menu_item_link_class' => $this->string()->toArray()
+            'menu_name' => $this->string()->toArray()
         ]);
 
         $this->forge->addKey('menu_id', true);

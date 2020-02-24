@@ -22,9 +22,6 @@ abstract class BaseMenuItemModel extends \BasicApp\Core\Model
         'item_sort' => 'Sort',
         'item_created_at' => 'Created At',
         'item_updated_at' => 'Updated At',
-        'item_link_class' => 'Link HTML Class',
-        'item_icon' => 'Icon',
-        'item_class' => 'Container HTML Class',
         'item_uid' => 'UID',
         'item_enabled' => 'Enabled'
     ];
