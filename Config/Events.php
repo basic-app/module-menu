@@ -65,7 +65,7 @@ if (class_exists(SiteEvents::class))
         {
             if (!is_numeric($key))
             {
-                $items[$key]['icon'] = 'fab ' . $key . ' fab fa-twitter fa-stack-1x fa-inverse';
+                $items[$key]['icon'] = $key;
             }
         }
 
