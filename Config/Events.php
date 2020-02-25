@@ -57,6 +57,18 @@ if (class_exists(SiteEvents::class))
 {
     SiteEvents::onMainLayout(function($event) 
     {
-        $event->params['mainMenu'] = menu_items('main', true, ['menu_name' => 'Main Menu']);
+        $event->params['mainMenu'] = menu_items('main', false);
+
+        $items = menu_items('social', false);
+
+        foreach($items as $key => $item)
+        {
+            if (!is_numeric($key))
+            {
+                $items[$key]['icon'] = 'fab ' . $key . ' fab fa-twitter fa-stack-1x fa-inverse';
+            }
+        }
+
+        $event->params['socialMenu'] = $items; 
     });
 }
