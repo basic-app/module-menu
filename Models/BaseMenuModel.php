@@ -59,6 +59,8 @@ abstract class BaseMenuModel extends \BasicApp\Core\Model
             return [];
         }
 
+        $menuModel = new MenuModel;
+
         $query = new MenuItemModel;
 
         $items = $query
@@ -67,7 +69,7 @@ abstract class BaseMenuModel extends \BasicApp\Core\Model
                 'item_enabled' => 1
             ])
             ->orderBy('item_sort ASC')
-            ->join('menu', 'menu_item.item_menu_id=menu.menu_id', 'left')
+            ->join($menuModel->table, $query->table . '.item_menu_id=' . $menuModel->table . '.menu_id', 'left')
             ->findAll();
 
         return $items;

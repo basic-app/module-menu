@@ -21,4 +21,11 @@ abstract class BaseMenuModel extends \BasicApp\Menu\Models\MenuModel
         'menu_uid' => 'alpha_dash|max_length[255]|is_unique[menu.menu_uid,menu_id,{menu_id}]|required'
     ];
 
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->validationRules['menu_uid'] = str_replace('menu.', $this->table . '.', $this->validationRules['menu_uid']);
+    }
+
 }
