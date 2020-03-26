@@ -57,7 +57,7 @@ if (class_exists(SiteEvents::class))
 {
     SiteEvents::onMainLayout(function($event) 
     {
-        $event->params['mainMenu'] = menu_items('main', false);
+        $event->params['mainMenu'] = array_merge_recursive(menu_items('main', false), $event->params['mainMenu'] ?? []);
 
         $items = menu_items('social', false);
 
