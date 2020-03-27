@@ -41,7 +41,13 @@ abstract class BaseMenuEvents extends \CodeIgniter\Events\Events
         }
         else
         {
-            if (trim($item->item_url, '/') == $current_uri)
+            $item_url = trim($item->item_url, '/');
+
+            if ($item_url == $current_uri)
+            {
+                $event->return['active'] = true;
+            }
+            elseif($item_url && preg_match('|^' . preg_quote($item_url, '|') . '.*|', $current_uri))
             {
                 $event->return['active'] = true;
             }
