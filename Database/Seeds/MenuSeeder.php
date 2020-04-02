@@ -8,6 +8,7 @@ namespace BasicApp\Menu\Database\Seeds;
 
 use BasicApp\Menu\Models\MenuModel;
 use BasicApp\Menu\Models\MenuItemModel;
+use BasicApp\Helpers\Url;
 
 class MenuSeeder extends \BasicApp\Core\Seeder
 {
@@ -24,7 +25,10 @@ class MenuSeeder extends \BasicApp\Core\Seeder
         if ($mainMenu)
         {
             MenuItemModel::getEntity(
-                ['item_menu_id' => $mainMenu->menu_id, 'item_url' => '/'], 
+                [
+                    'item_menu_id' => $mainMenu->menu_id, 
+                    'item_url' => Url::createUrl('/')
+                ], 
                 true, 
                 [
                     'item_name' => 'Index',
@@ -34,7 +38,10 @@ class MenuSeeder extends \BasicApp\Core\Seeder
             );
 
             MenuItemModel::getEntity(
-                ['item_menu_id' => $mainMenu->menu_id, 'item_url' => '/page/about'], 
+                [
+                    'item_menu_id' => $mainMenu->menu_id, 
+                    'item_url' => Url::createUrl('page/about')
+                ], 
                 true, 
                 [
                     'item_name' => 'About',
@@ -49,7 +56,10 @@ class MenuSeeder extends \BasicApp\Core\Seeder
         if ($socialMenu)
         {
             MenuItemModel::getEntity(
-                ['item_menu_id' => $socialMenu->menu_id, 'item_url' => 'https://github.com/basic-app'], 
+                [
+                    'item_menu_id' => $socialMenu->menu_id, 
+                    'item_url' => 'https://github.com/basic-app'
+                ], 
                 true, 
                 [
                     'item_name' => 'GitHub',
