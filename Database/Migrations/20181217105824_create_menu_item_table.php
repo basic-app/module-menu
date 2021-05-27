@@ -24,7 +24,7 @@ class Migration_create_menu_item_table extends \BasicApp\Migration\BaseMigration
             'item_url' => $this->string()->toArray(),
             'item_sort' => $this->sort()->toArray(),
             'item_enabled' => $this->boolean()->toArray(),
-            'item_uid' => $this->string()->toArray()
+            'item_uid' => $this->string()->default(null)->toArray()
         ]);
 
         $this->forge->addKey('item_id', true);
