@@ -6,7 +6,7 @@
  */
 namespace BasicApp\Menu\Database\Migrations;
 
-class Migration_create_menu_item_table extends \BasicApp\Core\Migration
+class Migration_create_menu_item_table extends \BasicApp\Migration\BaseMigration
 {
 
     public $tableName = 'menu_item';

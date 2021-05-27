@@ -3,7 +3,10 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "BasicApp\\Menu\\" : ""
+            "BasicApp\\Menu\\": ""
         }
+    },
+    "require": {
+        "basic-app/migration": "*"
     }
 }
