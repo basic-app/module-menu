@@ -10,14 +10,12 @@ use BasicApp\System\Events\SystemSeedEvent;
 use BasicApp\Menu\Database\Seeds\MenuResetSeeder;
 use BasicApp\Menu\Database\Seeds\MenuSeeder;
 use Config\Database;
+use CodeIgniter\Events\Events;
 
-if (class_exists(SystemEvents::class))
+Events::on('pre_system', function() 
 {
-    SystemEvents::onPreSystem(function()
-    {
-        helper(['menu']);
-    });
-}
+    helper(['menu']);
+});
 
 if (class_exists(AdminEvents::class))
 {
