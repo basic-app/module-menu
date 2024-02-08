@@ -27,7 +27,7 @@ class MenuSeeder extends \BasicApp\Core\Seeder
             MenuItemModel::getEntity(
                 [
                     'item_menu_id' => $mainMenu->menu_id, 
-                    'item_url' => Url::createUrl('/')
+                    'item_url' => '/'
                 ], 
                 true, 
                 [
@@ -40,7 +40,7 @@ class MenuSeeder extends \BasicApp\Core\Seeder
             MenuItemModel::getEntity(
                 [
                     'item_menu_id' => $mainMenu->menu_id, 
-                    'item_url' => Url::createUrl('page/about')
+                    'item_url' => '/page/about'
                 ], 
                 true, 
                 [
