@@ -32,7 +32,7 @@ abstract class BaseMenuItemModel extends \BasicApp\Menu\Models\MenuItemModel
     {
         $data = $params['data'];
 
-        if ($data['item_uid'])
+        if (array_key_exists('item_uid', $data) ?? $data['item_uid'])
         {
             $class = static::class;
 
