@@ -21,13 +21,10 @@ if (class_exists(AdminEvents::class))
 {
     AdminEvents::onMainMenu(function($event)
     {
-        if (service('admin')->can(MenuController::class))
-        {
-            $event->items['site']['items']['menu'] = [
-                'url' => Url::createUrl('admin/menu'),
-                'label' => t('admin.menu', 'Menu')
-            ];
-        }
+        $event->items['site']['items']['menu'] = [
+            'url' => Url::createUrl('admin/menu'),
+            'label' => t('admin.menu', 'Menu')
+        ];
     });
 }
 
