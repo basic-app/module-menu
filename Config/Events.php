@@ -11,15 +11,16 @@ use BasicApp\Menu\Database\Seeds\MenuResetSeeder;
 use BasicApp\Menu\Database\Seeds\MenuSeeder;
 use Config\Database;
 use CodeIgniter\Events\Events;
+use BasicApp\AdminMenu\AdminMenuEvents;
 
 Events::on('pre_system', function() 
 {
     helper(['menu']);
 });
 
-if (class_exists(AdminEvents::class))
+if (class_exists(AdminMenuEvents::class))
 {
-    AdminEvents::onMainMenu(function($event)
+    AdminMenuEvents::onMainMenu(function($event)
     {
         $event->items['site']['items']['menu'] = [
             'url' => Url::createUrl('admin/menu'),
