@@ -27,7 +27,7 @@ abstract class BaseMenuEvents extends \CodeIgniter\Events\Events
 
         $event->return = [
             'label' => $item->item_name,
-            'url' => $item->item_url
+            'url' => $item->getUrl()
         ];
 
         $current_uri = uri_string();
