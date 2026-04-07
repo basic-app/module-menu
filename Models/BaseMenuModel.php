@@ -8,7 +8,6 @@ namespace BasicApp\Menu\Models;
 
 abstract class BaseMenuModel extends \BasicApp\Core\Model
 {
-
     protected $table = 'menu';
 
     protected $primaryKey = 'menu_id';

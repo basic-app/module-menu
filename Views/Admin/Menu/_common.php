@@ -2,8 +2,8 @@
 
 use BasicApp\Helpers\Url;
 
-$this->data['title'] = t('admin.menu', 'Menu');
+$this->tempData['title'] = t('admin.menu', 'Menu');
 
-$this->data['mainMenu']['site']['items']['menu']['active'] = true;
+$this->tempData['mainMenu']['site']['items']['menu']['active'] = true;
 
-$this->data['breadcrumbs'][] = ['label' => $this->data['title'], 'url' => Url::createUrl('/admin/menu')];
+$this->tempData['breadcrumbs'][] = ['label' => $this->tempData['title'], 'url' => Url::createUrl('/admin/menu')];

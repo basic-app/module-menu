@@ -10,7 +10,6 @@ use BasicApp\Menu\Models\Admin\MenuModel;
 
 abstract class BaseMenu extends \BasicApp\Admin\AdminCrudController
 {
-
     protected $modelClass = MenuModel::class;
 
     protected $viewPath = 'BasicApp\Menu\Views\Admin\Menu';
@@ -19,4 +18,5 @@ abstract class BaseMenu extends \BasicApp\Admin\AdminCrudController
 
     protected $perPage = null;
 
+    protected $layout = null;
 }

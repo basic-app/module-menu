@@ -10,7 +10,6 @@ use BasicApp\Menu\Models\Admin\MenuItemModel;
 
 abstract class BaseMenuItem extends \BasicApp\Admin\AdminCrudController
 {
-
     protected $modelClass = MenuItemModel::class;
 
     protected $viewPath = 'BasicApp\Menu\Views\Admin\MenuItem';
@@ -23,4 +22,5 @@ abstract class BaseMenuItem extends \BasicApp\Admin\AdminCrudController
 
     protected $perPage = null;
 
+    protected $layout = null;
 }

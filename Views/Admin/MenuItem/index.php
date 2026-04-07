@@ -5,9 +5,9 @@ use BasicApp\Helpers\Url;
 
 require __DIR__ . '/_common.php';
 
-unset($this->data['breadcrumbs'][count($this->data['breadcrumbs']) - 1]['url']);
+unset($this->tempData['breadcrumbs'][count($this->tempData['breadcrumbs']) - 1]['url']);
 
-$this->data['actionMenu'][] = [
+$this->tempData['actionMenu'][] = [
     'url' => Url::returnUrl('admin/menu-item/create', [
         'item_menu_id' => $parentId
     ]),
@@ -19,6 +19,10 @@ $this->data['actionMenu'][] = [
 ];
 
 $adminTheme = service('adminTheme');
+
+$this->extend('BasicApp\Admin/layouts/app');
+
+$this->section('content');
 
 echo $adminTheme->grid([
     'headers' => [
@@ -62,3 +66,5 @@ if ($pager)
 {
     echo $pager->links('default', 'adminTheme');
 }
+
+$this->endSection();
