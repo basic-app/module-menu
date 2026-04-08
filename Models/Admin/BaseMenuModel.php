@@ -17,6 +17,7 @@ abstract class BaseMenuModel extends \BasicApp\Menu\Models\MenuModel
     ];
 
     protected $validationRules = [
+        'menu_id' => 'permit_empty|is_natural_no_zero',
         'menu_name' => 'not_special_chars|max_length[255]|required',
         'menu_uid' => 'alpha_dash|max_length[255]|is_unique[menu.menu_uid,menu_id,{menu_id}]|required'
     ];
