@@ -32,6 +32,7 @@ echo $adminTheme->grid([
         ],
         $model->getFieldLabel('item_created_at'),
         $model->getFieldLabel('item_url'),
+        $model->getFieldLabel('item_uid'),
         [
             'class' => $adminTheme::GRID_HEADER_LABEL,
             'content' => $model->getFieldLabel('item_name')
@@ -52,6 +53,7 @@ echo $adminTheme->grid([
                 $data->item_id,
                 $data->item_created_at,
                 $data->item_url,
+                $data->item_uid,
                 $data->item_name,
                 $data->item_sort,
                 $data->item_enabled,

@@ -43,7 +43,7 @@ abstract class BaseMenuItemModel extends \BasicApp\Menu\Models\MenuItemModel
                 'item_uid' => $data['item_uid']
             ]);
 
-            if ($data['item_id'])
+            if (!empty($data['item_id']))
             {
                 $query->where('item_id !=', $data['item_id']);
             }
