@@ -17,7 +17,8 @@ abstract class BaseMenuItemModel extends \BasicApp\Menu\Models\MenuItemModel
         'item_menu_id', 
         'item_sort',
         'item_uid',
-        'item_enabled'
+        'item_enabled',
+        'item_html_class'
     ];
 
     protected $validationRules = [
@@ -25,7 +26,8 @@ abstract class BaseMenuItemModel extends \BasicApp\Menu\Models\MenuItemModel
         'item_url' => 'not_special_chars|max_length[255]|required',
         'item_sort' => 'is_natural|permit_empty',
         'item_enabled' => 'is_natural|required',
-        'item_uid' => 'not_special_chars|max_length[255]'
+        'item_uid' => 'not_special_chars|max_length[255]',
+        'item_html_class' => 'max_length[255]|permit_empty',
     ];
 
     public function afterValidate(array $params) : array

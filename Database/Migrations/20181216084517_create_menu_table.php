@@ -16,7 +16,7 @@ class Migration_create_menu_table extends \BasicApp\Migration\BaseMigration
         $this->forge->addField([
             'menu_id' => $this->primaryKey()->toArray(),
             'menu_created_at' => $this->created()->toArray(),
-            'menu_updated_at' => $this->updated()->toArray(),
+            'menu_updated_at' => $this->updated()->default(null)->toArray(),
             'menu_uid' => $this->string()->unique()->toArray(),
             'menu_name' => $this->string()->toArray()
         ]);

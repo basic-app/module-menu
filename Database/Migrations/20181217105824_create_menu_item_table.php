@@ -18,13 +18,14 @@ class Migration_create_menu_item_table extends \BasicApp\Migration\BaseMigration
         $this->forge->addField([
             'item_id' => $this->primaryKey()->toArray(),
             'item_created_at' => $this->created()->toArray(),
-            'item_updated_at' => $this->updated()->toArray(),
+            'item_updated_at' => $this->updated()->default(null)->toArray(),
             'item_menu_id' => $this->foreignKey()->toArray(),
             'item_name' => $this->string()->toArray(),
             'item_url' => $this->string()->toArray(),
             'item_sort' => $this->sort()->toArray(),
             'item_enabled' => $this->boolean()->toArray(),
-            'item_uid' => $this->string()->default(null)->toArray()
+            'item_uid' => $this->string()->default(null)->toArray(),
+            'item_html_class' => $this->string()->toArray()
         ]);
 
         $this->forge->addKey('item_id', true);

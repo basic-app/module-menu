@@ -7,21 +7,25 @@
 use BasicApp\Menu\MenuEvents;
 use BasicApp\Menu\Models\MenuModel;
 
-if (!function_exists('menu_items'))
+if (!function_exists('menu'))
 {
-    function menu_items(string $menu, bool $create = false, array $params = []) : array
+    function menu(string $menu, bool $create = false, array $params = []) : array
     {
         $return = [];
 
         foreach(MenuModel::getMenuItems($menu, $create, $params) as $menuItem)
         {
+            $data = $menuItem->toArray();
+
+            $data['item_url'] = $menuItem->getUrl(); 
+
             if ($menuItem->item_uid)
             {
-                $return[$menuItem->item_uid] = MenuEvents::menuItem($menuItem);
+                $return[$menuItem->item_uid] = $data;
             }
             else
             {
-                $return[] = MenuEvents::menuItem($menuItem);
+                $return[] = $data;
             }
         }
 

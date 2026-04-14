@@ -22,7 +22,8 @@ abstract class BaseMenuItemModel extends \BasicApp\Core\Model
         'item_created_at' => 'Created At',
         'item_updated_at' => 'Updated At',
         'item_uid' => 'UID',
-        'item_enabled' => 'Enabled'
+        'item_enabled' => 'Enabled',
+        'item_html_class' => 'HTML Class'
     ];
 
     protected $langCategory = 'menu-item';
